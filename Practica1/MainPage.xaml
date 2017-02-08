@@ -1,0 +1,33 @@
+﻿<Page RequestedTheme="Dark"
+    x:Class="Practica1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Practica1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Practica1.Converters"
+    mc:Ignorable="d"
+    DataContext="{Binding MainViewModel, Source={StaticResource vmLocator}}">
+
+    <Grid Background="Black">
+        <Grid.Resources>
+            <converters:ButtonToText x:Key="ButtonToText"/>
+            <converters:ImageToPath x:Key="ImageToPath"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="1" Grid.Row="0" Source="{Binding EyeOpen, Mode=TwoWay, Converter={StaticResource ImageToPath}}" 
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <Button Grid.Column="1" Grid.Row="1" Command="{Binding BtnOpenClose}" 
+                Style="{StaticResource WhiteButton}"
+                Content="{Binding EyeOpen, Mode=TwoWay, Converter={StaticResource ButtonToText}}"
+                HorizontalAlignment="Center" VerticalAlignment="Top"></Button>
+    </Grid>
+</Page>
